@@ -10,6 +10,7 @@ export default function App() {
     const [isLoading, setIsLoading] = useState(true)
     const [isRevealed, setIsRevealed] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
+    const [difficulty, setDifficulty] = useState("easy")
 
     useEffect(() => {
         if (isReady) resetGame()
@@ -50,7 +51,7 @@ export default function App() {
     function resetGame() {
         setIsLoading(true)
 
-        fetch("https://opentdb.com/api.php?amount=5")
+        fetch(`https://opentdb.com/api.php?amount=5&difficulty=${difficulty}`)
             .then(res => res.json())
             .then(data => {
                 setQuestions(() => {
@@ -80,6 +81,25 @@ export default function App() {
             .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => value)
     }
+
+    function handleChange(event) {
+        const { value } = event.target
+
+        setDifficulty(value)
+    }
+
+    function keyDown(e) {
+        if (e.key !== 'Enter') return
+        console.log([...e.target.children][0])
+
+        const label = [...e.target.children][0]
+        const value = label.htmlFor
+
+        const newDifficult = { target: { value } }
+
+        handleChange(newDifficult)
+        
+    }
    
     return (
         <>
@@ -91,9 +111,52 @@ export default function App() {
                 { !isReady ?
                     <>
                         <header className="title-container">
-                            <h1>Quizzical</h1>
+                            <h1 className="tittle">Quizzical</h1>
                             <p>Choose the right answers!</p>
                         </header>
+                        <div className="difficulty-container">
+                            <h2>Difficulty</h2>
+                            <div className="difficulty-buttons-wrapper">
+                                <input 
+                                    type="radio" 
+                                    className="difficulty-radio" 
+                                    name="difficulty" 
+                                    id="easy" 
+                                    value="easy"
+                                    checked={difficulty === 'easy'}
+                                    onChange={handleChange}
+                                />
+                                <input 
+                                    type="radio" 
+                                    className="difficulty-radio" 
+                                    name="difficulty" 
+                                    id="medium" 
+                                    value="medium"
+                                    checked={difficulty === 'medium'}
+                                    onChange={handleChange}
+                                />
+                                <input 
+                                    type="radio" 
+                                    className="difficulty-radio" 
+                                    name="difficulty" 
+                                    id="hard" 
+                                    value="hard"
+                                    checked={difficulty === 'hard'}
+                                    onChange={handleChange}
+                                />
+
+                                <button className={`bttn small ${difficulty === 'easy' ? 'active' : ''}`} onKeyUp={keyDown}>
+                                    <label className="difficulty-label" htmlFor="easy">Easy</label>
+                                </button>
+                                <button className={`bttn small ${difficulty === 'medium' ? 'active' : ''}`} onKeyUp={keyDown}>
+                                    <label className="difficulty-label" htmlFor="medium">Medium</label>
+                                </button>
+                                <button className={`bttn small ${difficulty === 'hard' ? 'active' : ''}`} onKeyUp={keyDown}>
+                                    <label className="difficulty-label" htmlFor="hard">Hard</label>
+                                </button>
+                            </div>
+
+                        </div>
                         <button 
                             className="bttn"
                             onClick={() => setIsReady(true)}
