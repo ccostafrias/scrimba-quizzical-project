@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/scrimba-quizzical-project/static/css/main.c33c7289.css",
-    "main.js": "/scrimba-quizzical-project/static/js/main.61daf708.js",
+    "main.css": "/scrimba-quizzical-project/static/css/main.684ed945.css",
+    "main.js": "/scrimba-quizzical-project/static/js/main.9c56a5eb.js",
     "index.html": "/scrimba-quizzical-project/index.html",
     "static/media/blob.svg": "/scrimba-quizzical-project/static/media/blob.ce2a1468715753757956cfbadbf15428.svg",
-    "main.c33c7289.css.map": "/scrimba-quizzical-project/static/css/main.c33c7289.css.map",
-    "main.61daf708.js.map": "/scrimba-quizzical-project/static/js/main.61daf708.js.map"
+    "main.684ed945.css.map": "/scrimba-quizzical-project/static/css/main.684ed945.css.map",
+    "main.9c56a5eb.js.map": "/scrimba-quizzical-project/static/js/main.9c56a5eb.js.map"
   },
   "entrypoints": [
-    "static/css/main.c33c7289.css",
-    "static/js/main.61daf708.js"
+    "static/css/main.684ed945.css",
+    "static/js/main.9c56a5eb.js"
   ]
 }
